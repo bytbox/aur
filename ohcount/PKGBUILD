@@ -1,0 +1,29 @@
+# Maintainer: Scott Lawrence <bytbox@gmail.com>
+# Contributor: Daniel Fiser <danfis (at) danfis (dot) cz>
+pkgname=ohcount
+pkgver=3.0.0
+pkgrel=1
+pkgdesc="A source-lines of code counter."
+arch=(i686 x86_64)
+url="http://labs.ohloh.net/ohcount"
+license=('GPL')
+depends=(pcre)
+makedepends=('ragel>=6.3' bash 'gcc>=4.1.2' swig ruby rake)
+provides=()
+conflicts=()
+replaces=()
+backup=()
+install=
+source=("https://github.com/robinluckey/ohcount/tarball/$pkgver")
+md5sums=('7aaa444229c2250cfa0fab87220ca8c2')
+dfname='robinluckey-ohcount-d7d6124'
+
+build() {
+  cd $srcdir/$dfname
+
+  ./build ohcount
+
+  mkdir -p $startdir/pkg/usr/bin
+
+  cp bin/ohcount $startdir/pkg/usr/bin/
+}
